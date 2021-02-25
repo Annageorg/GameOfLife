@@ -1,0 +1,24 @@
+{
+  "name": "pingpongweek6",
+  "version": "1.0.0",
+  "description": "using ping pong method for TDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Annageorg/pingPongWeek6.git"
+  },
+  "author": "Anna Nuala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Annageorg/pingPongWeek6/issues"
+  },
+  "homepage": "https://github.com/Annageorg/pingPongWeek6#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.5",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3"
+  }
+}
