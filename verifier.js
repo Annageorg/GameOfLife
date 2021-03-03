@@ -25,9 +25,8 @@ function verify(input) {
             for (let x = 0; x < resolution; x++) {
                 const neighbours = getNeighbourCount(x, y);
                 if (input[x][y] == 1 && neighbours < 2) newArr[x][y] = 0;
-                if (input[x][y] == 1 && neighbours > 3) newArr[x][y] = 0;
-                                
-                if (input[x][y] == 0) newArr[x][y] = 0;
+                if (input[x][y] == 1 && neighbours > 3) newArr[x][y] = 0;              
+                if (input[x][y] == 0 && neighbours !== 3) newArr[x][y] = 0;
             };
         };
         return newArr;
@@ -35,5 +34,7 @@ function verify(input) {
 
     let output = step();
     return output;
+
+    
 }
 export { verify };
