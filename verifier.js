@@ -1,4 +1,5 @@
 function verify(input) {
+    
     const resolution = 3;
     //count neighbours function
     function getNeighbourCount(x, y) {
@@ -30,7 +31,7 @@ function verify(input) {
             };
         };
         return newArr;
-    }
+    };
 
     let output = step();
     return output;
