@@ -1,43 +1,59 @@
-function verifyPass(input) {
-    let pass = 0;
-    let msg = "Your password must contain:";
-
-    if (input === null) {
-        return "The password must not be null";
-    } else {
-        pass++;
+function verifyPass(input1, input2) {
+    const resolution = 3;
+    //count neighbours function
+    function getNeighbourCount (x, y) {
+        let count = 0;
+        for (let yy = -1; yy <2; yy++){
+            for (let xx = -1; xx <2; xx++){
+                if (xx === 0 && yy === 0) continue;
+                if (x + xx < 0 || x + xx > resolution - 1) continue;
+                if (y + yy < 0 || y + yy > resolution - 1) continue;
+                if (input1[x + xx][y + yy] === 1) count++;
+            }
+        }
+        return count;
     }
 
-    const regEx = /\d/
-    if (!regEx.test(input)) {
-        msg += "\na number";
-    } else {
-        pass++;
+    //create state two of game function
+    function step() {
+        let newArr = [
+            [1, 1, 1],
+            [1, 1, 1],
+            [1, 1, 1],
+        ];
+        for (let y = 0; y < resolution; y++) {
+          for (let x = 0; x < resolution; x++) {
+            const neighbours = getNeighbourCount(x, y);
+            if (input1[x][y] == 1 && neighbours < 2 ) newArr[x][y] = 0;   
+            if (input1[x][y] == 0) newArr [x][y] =0;    
+          } 
+        }
+        return newArr
     }
 
-    if (input.length <= 8) {
-        msg += "\nmore than 8 characters";
-    } else {
-        pass++;
-    }
+    let output = step();
 
-    if (input === input.toLowerCase()) {
-        msg += "\nan uppercase letter";
-    } else {
-        pass++;
-    }
+    function comparing(){
+        let cnt = 0;
+        for (let y = 0; y < resolution; y++) {
+            for (let x = 0; x < resolution; x++) {
+            if (output[x][y] == input2[x][y]) cnt++;
+            } 
+        }
+        return cnt;
+    };
 
-    if (input === input.toUpperCase()) {
-        msg += "\na lowercase letter";
+    let comparison = comparing();
+    if(comparison === 9){
+        return "Cells died from under-population"
     } else {
-        pass++;
+        return "cells didn't behave as expected"
+ 
     }
+    
 
-    if (pass < 3) {
-        return msg;
-    } else {
-        return true;
-    }
+
+    
+    
 }
-
 export { verifyPass };
